@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fathom — AI Product Recommender</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="brand-dot"></span>
+      <span>Fathom</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#demo">Try Demo</a></li>
+      <li><a href="#tech">Tech Stack</a></li>
+    </ul>
+    <button class="wishlist-nav-btn" id="wishlistNavBtn" onclick="openWishlist()">
+      ♡ Wishlist <span class="wishlist-nav-count" id="wishlistNavCount">0</span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-tag">AI-Powered Recommender</div>
+    <h1>Discover products <br/><em>made for you</em></h1>
+    <p class="hero-sub">Select a category and let our intelligent recommender surface the most relevant products — powered by machine learning and collaborative filtering.</p>
+    <a href="#demo" class="btn-primary">Try It Now →</a>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Three simple steps to personalized recommendations</p>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <h3>Choose a Category</h3>
+        <p>Pick from Electronics, Fashion, Books, Home & Kitchen, Sports, or Beauty. Our model knows each domain deeply.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <h3>AI Processes</h3>
+        <p>Our backend runs a collaborative filtering + content-based hybrid model, analyzing patterns across thousands of users.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <h3>Get Recommendations</h3>
+        <p>Receive a ranked list of products with confidence scores, descriptions, and match reasoning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Demo -->
+  <section class="section demo-section" id="demo">
+    <h2 class="section-title">Live Demo</h2>
+    <p class="section-sub">Pick a category to see AI recommendations in action</p>
+
+    <div class="demo-container">
+      <div class="category-panel">
+        <label class="panel-label">Select Category</label>
+        <div class="category-grid" id="categoryGrid">
+          <button class="cat-btn active" data-cat="electronics"><span class="cat-icon">⚡</span>Electronics</button>
+          <button class="cat-btn" data-cat="fashion"><span class="cat-icon">👗</span>Fashion</button>
+          <button class="cat-btn" data-cat="books"><span class="cat-icon">📚</span>Books</button>
+          <button class="cat-btn" data-cat="home"><span class="cat-icon">🏠</span>Home & Kitchen</button>
+          <button class="cat-btn" data-cat="sports"><span class="cat-icon">🏃</span>Sports</button>
+          <button class="cat-btn" data-cat="beauty"><span class="cat-icon">✨</span>Beauty</button>
+        </div>
+
+        <label class="panel-label mt">Sort By</label>
+        <select id="sortBy" class="styled-select">
+          <option value="score">Relevance Score</option>
+          <option value="rating">User Rating</option>
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+        </select>
+
+        <button class="btn-recommend" id="recommendBtn">Get Recommendations</button>
+
+        <!-- Compare bar -->
+        <div class="compare-panel" id="comparePanel">
+          <div class="compare-panel-title">⚖ Compare Products</div>
+          <p class="compare-hint">Select 2 products to compare</p>
+          <div id="compareSlots" class="compare-slots"></div>
+          <button class="btn-compare" id="compareBtn" onclick="openCompare()" disabled>Compare Now</button>
+        </div>
+      </div>
+
+      <div class="results-panel" id="resultsPanel">
+        <div class="results-header">
+          <span id="resultsTitle">Electronics — Top Picks</span>
+          <span class="results-count" id="resultsCount">6 products</span>
+        </div>
+        <div id="statusMsg" style="display:none;font-size:0.78rem;margin-bottom:0.75rem;font-weight:500;"></div>
+        <div class="product-grid" id="productGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="section" id="tech">
+    <h2 class="section-title">Tech Stack</h2>
+    <p class="section-sub">Built with modern, production-ready technologies</p>
+    <div class="tech-grid">
+      <div class="tech-card"><div class="tech-icon">🐍</div><h4>Python (Flask)</h4><p>Backend API — recommendation logic, model serving, REST endpoints</p></div>
+      <div class="tech-card"><div class="tech-icon">🟩</div><h4>Node.js (Express)</h4><p>Middleware layer — request routing, caching, authentication</p></div>
+      <div class="tech-card"><div class="tech-icon">🌐</div><h4>HTML / CSS / JS</h4><p>Responsive frontend — clean, fast, no framework dependencies</p></div>
+      <div class="tech-card"><div class="tech-icon">🤖</div><h4>scikit-learn</h4><p>ML models — TF-IDF vectorizer, cosine similarity, SVD matrix factorization</p></div>
+      <div class="tech-card"><div class="tech-icon">🗃️</div><h4>Pandas / NumPy</h4><p>Data processing — dataset loading, feature engineering, normalization</p></div>
+      <div class="tech-card"><div class="tech-icon">📦</div><h4>MongoDB</h4><p>Database — product catalog, user profiles, interaction logs</p></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="brand-dot"></div>
+    <span>Fathom — AI Recommender System</span>
+    <p>Built with Python · Flask · scikit-learn · Node.js</p>
+  </footer>
+
+  <!-- ── WISHLIST DRAWER ───────────────────────────────── -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeWishlist()"></div>
+  <div class="wishlist-drawer" id="wishlistDrawer">
+    <div class="drawer-header">
+      <span>♡ My Wishlist</span>
+      <button class="drawer-close" onclick="closeWishlist()">✕</button>
+    </div>
+    <div id="wishlistItems" class="drawer-items">
+      <div class="drawer-empty">Your wishlist is empty.<br/>Click ♡ on any product to save it.</div>
+    </div>
+  </div>
+
+  <!-- ── COMPARE MODAL ─────────────────────────────────── -->
+  <div class="modal-overlay" id="compareOverlay" onclick="closeCompare()"></div>
+  <div class="compare-modal" id="compareModal">
+    <div class="modal-header">
+      <span>⚖ Product Comparison</span>
+      <button class="drawer-close" onclick="closeCompare()">✕</button>
+    </div>
+    <div id="compareBody" class="compare-body"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
